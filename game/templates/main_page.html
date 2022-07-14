@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div>Your id is: {{user_id}}</div>
+    <div>Every game cost you 3 credits!</div>
+    <form action="/" method="POST">
+    {% if credits < 3 %}
+    <input  type="submit" name="submit_button" value="Set credits to 10">
+    {% else %}
+    <input onclick="sendJSON()" type="submit" name="submit_button" value="Rock">
+    <input onclick="sendJSON()" type="submit" name="submit_button" value="Paper">
+    <input onclick="sendJSON()" type="submit" name="submit_button" value="Scissors">
+    {% endif %}
+    </form>
+    <div>
+        {% if pc_item == 1 %}
+        PC choose Rock
+        {% endif %}
+        {% if pc_item == 2 %}
+        PC choose Paper
+        {% endif %}
+        {% if pc_item == 3 %}
+        PC choose Scissors
+        {% endif %}
+    </div>
+    <div>
+        {% if not result %}
+        {% else %}
+        Result is: {{result}}
+        {% endif %}
+    </div>
+    <div>
+        Credits is: {{credits}}
+    </div>
+    <div>
+        {% if not record %}
+        Your record is: 0-0-0 (Wins-Draws_Loses)
+        {% else %}
+        Your record is: {{record.0}}-{{record.1}}-{{record.2}} (Wins-Draws-Loses)
+        {% endif %}
+    </div>
+    <div>
+        {% if not today_players %}
+        Today we have 0 Players
+        {% else %}
+        Today we have {{today_players|length}} Players
+        {% endif %}
+    </div>
+    <div>
+        {% if not cumulative_record %}
+        Their cumulative record is: 0-0-0 (Wins-Draws_Loses)
+        {% else %}
+        Their cumulative record is: {{cumulative_record.0}}-{{cumulative_record.1}}-{{cumulative_record.2}} (Wins-Draws_Loses)
+        {% endif %}
+    </div>
+    <div>
+        {% if credits >3 %}
+        Game timer: 
+        <label id="minutes">00</label>:<label id="seconds">00</label>
+        {% endif %}
+    </div>
+</body>
+<script type="text/javascript" src="{{ url_for('static', filename='js/timer.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/getTime.js') }}"></script>
+</html>
