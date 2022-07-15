@@ -15,9 +15,11 @@
     {% if credits < 3 %}
     <input  type="submit" name="submit_button" value="Set credits to 10">
     {% else %}
-    <input onclick="sendJSON()" type="submit" name="submit_button" value="Rock">
-    <input onclick="sendJSON()" type="submit" name="submit_button" value="Paper">
-    <input onclick="sendJSON()" type="submit" name="submit_button" value="Scissors">
+    <input type="hidden" id="inputminutes" name="inputminutes" value="">
+    <input type="hidden" id="inputseconds" name="inputseconds" value="">
+    <input onclick="gettime()" type="submit" name="submit_button" id="Rock" value="Rock">
+    <input onclick="gettime()" type="submit" name="submit_button" id="Paper" value="Paper">
+    <input onclick="gettime()" type="submit" name="submit_button" id="Scissors"value="Scissors">
     {% endif %}
     </form>
     <div>
@@ -42,7 +44,7 @@
     </div>
     <div>
         {% if not record %}
-        Your record is: 0-0-0 (Wins-Draws_Loses)
+        Your record is: 0-0-0 (Wins-Draws-Loses)
         {% else %}
         Your record is: {{record.0}}-{{record.1}}-{{record.2}} (Wins-Draws-Loses)
         {% endif %}
@@ -56,13 +58,20 @@
     </div>
     <div>
         {% if not cumulative_record %}
-        Their cumulative record is: 0-0-0 (Wins-Draws_Loses)
+        Their cumulative record is: 0-0-0 (Wins-Draws-Loses)
         {% else %}
-        Their cumulative record is: {{cumulative_record.0}}-{{cumulative_record.1}}-{{cumulative_record.2}} (Wins-Draws_Loses)
+        Their cumulative record is: {{cumulative_record.0}}-{{cumulative_record.1}}-{{cumulative_record.2}} (Wins-Draws-Loses)
         {% endif %}
     </div>
     <div>
-        {% if credits >3 %}
+        {% if not cumulative_time %}
+        Their cumulative time is: 0:00:00
+        {% else %}
+        Their cumulative time is: {{cumulative_time}}
+        {% endif %}
+    </div>
+    <div>
+        {% if credits >=3 %}
         Game timer: 
         <label id="minutes">00</label>:<label id="seconds">00</label>
         {% endif %}
