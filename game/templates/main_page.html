@@ -1,82 +1,126 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" />
 </head>
+
 <body>
-    <div>Your id is: {{user_id}}</div>
-    <div>Every game cost you 3 credits!</div>
-    <form action="/" method="POST">
-    {% if credits < 3 %}
-    <input  type="submit" name="submit_button" value="Set credits to 10">
+    <div class="sidenavLeft">
+        Player
+    </div>
+    <div class="sidenavRight">
+        Opponent
+    </div>
+    <h1>Welcome in Rock Paper Scissor Game!!!</h1>
+    <div class="rules">
+        <div>Your id is: {{user_id}}</div>
+        <div>Every game cost you 3 credits!</div>
+        {% if credits > 3 %}
+        <div>Choose item to play</div>
+        {% else %}
+        <div>Set credits to 10</div>
+        {% endif %}
+    </div>
+    <div class="gameItems">
+        <form action="/" method="POST">
+            {% if credits < 3 %}<div class="empty"> 1
+    </div>
+    <div class="creditButton">
+        <input type="submit" name="submit_button" value="Set credits to 10">
+    </div>
     {% else %}
     <input type="hidden" id="inputminutes" name="inputminutes" value="">
     <input type="hidden" id="inputseconds" name="inputseconds" value="">
-    <input onclick="gettime()" type="submit" name="submit_button" id="Rock" value="Rock">
-    <input onclick="gettime()" type="submit" name="submit_button" id="Paper" value="Paper">
-    <input onclick="gettime()" type="submit" name="submit_button" id="Scissors"value="Scissors">
+    <div class="rockButton">
+        <input onclick="gettime()" type="submit" name="submit_button" id="Rock" value="Rock">
+    </div>
+    <div class="paperButton">
+        <input onclick="gettime()" type="submit" name="submit_button" id="Paper" value="Paper">
+    </div>
+    <div class="scissorsButton">
+        <input onclick="gettime()" type="submit" name="submit_button" id="Scissors" value="Scissors">
+    </div>
     {% endif %}
     </form>
-    <div>
-        {% if pc_item == 1 %}
-        PC choose Rock
-        {% endif %}
-        {% if pc_item == 2 %}
-        PC choose Paper
-        {% endif %}
-        {% if pc_item == 3 %}
-        PC choose Scissors
-        {% endif %}
     </div>
-    <div>
-        {% if not result %}
-        {% else %}
-        Result is: {{result}}
-        {% endif %}
+    <div class="result">
+        <div>
+            {% if user_choice == 1 %}
+            <img class="imageResult" src="{{ url_for('static', filename='images/rock_icon.png')}}">
+            {% endif %}
+            {% if user_choice == 2 %}
+            <img class="imageResult"  src="{{ url_for('static', filename='images/paper_icon.png')}}">
+            {% endif %}
+            {% if user_choice == 3 %}
+            <img class="imageResult"  src="{{ url_for('static', filename='images/scissors_icon.png')}}">
+            {% endif %}
+            {% if user_choice %}
+            <img class="imageResult"  src="{{ url_for('static', filename='images/versus_icon.png')}}">
+            {% endif %}
+            {% if pc_item == 1 %}
+            <img class="imageResult"  src="{{ url_for('static', filename='images/rock_icon.png')}}">
+            {% endif %}
+            {% if pc_item == 2 %}
+            <img class="imageResult"  src="{{ url_for('static', filename='images/paper_icon.png')}}">
+            {% endif %}
+            {% if pc_item == 3 %}
+            <img class="imageResult"  src="{{ url_for('static', filename='images/scissors_icon.png')}}">
+            {% endif %}
+        </div>
+        <div>
+            {% if not result %}
+            {% else %}
+            Result is: {{result}}
+            {% endif %}
+        </div>
     </div>
-    <div>
-        Credits is: {{credits}}
+    <div class="statistic">
+        <div>
+            Credits is: {{credits}}
+        </div>
+        <div>
+            {% if not record %}
+            Your record is: 0-0-0 (Wins-Draws-Loses)
+            {% else %}
+            Your record is: {{record.0}}-{{record.1}}-{{record.2}} (Wins-Draws-Loses)
+            {% endif %}
+        </div>
+        <div>
+            {% if not today_players %}
+            Today we have 0 Players
+            {% else %}
+            Today we have {{today_players|length}} Players
+            {% endif %}
+        </div>
+        <div>
+            {% if not cumulative_record %}
+            Their cumulative record is: 0-0-0 (Wins-Draws-Loses)
+            {% else %}
+            Their cumulative record is: {{cumulative_record.0}}-{{cumulative_record.1}}-{{cumulative_record.2}}
+            (Wins-Draws-Loses)
+            {% endif %}
+        </div>
+        <div>
+            {% if not cumulative_time %}
+            Their cumulative time is: 0:00:00
+            {% else %}
+            Their cumulative time is: {{cumulative_time}}
+            {% endif %}
+        </div>
     </div>
-    <div>
-        {% if not record %}
-        Your record is: 0-0-0 (Wins-Draws-Loses)
-        {% else %}
-        Your record is: {{record.0}}-{{record.1}}-{{record.2}} (Wins-Draws-Loses)
-        {% endif %}
-    </div>
-    <div>
-        {% if not today_players %}
-        Today we have 0 Players
-        {% else %}
-        Today we have {{today_players|length}} Players
-        {% endif %}
-    </div>
-    <div>
-        {% if not cumulative_record %}
-        Their cumulative record is: 0-0-0 (Wins-Draws-Loses)
-        {% else %}
-        Their cumulative record is: {{cumulative_record.0}}-{{cumulative_record.1}}-{{cumulative_record.2}} (Wins-Draws-Loses)
-        {% endif %}
-    </div>
-    <div>
-        {% if not cumulative_time %}
-        Their cumulative time is: 0:00:00
-        {% else %}
-        Their cumulative time is: {{cumulative_time}}
-        {% endif %}
-    </div>
-    <div>
+    <div class="timer">
         {% if credits >=3 %}
-        Game timer: 
+        Game timer:
         <label id="minutes">00</label>:<label id="seconds">00</label>
         {% endif %}
     </div>
 </body>
 <script type="text/javascript" src="{{ url_for('static', filename='js/timer.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/getTime.js') }}"></script>
+
 </html>
