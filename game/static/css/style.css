@@ -1,0 +1,122 @@
+body {
+    background-color: rgb(186, 199, 199);
+    font-family: 'Courier New', monospace;
+}
+
+h1 {
+    text-align: center;
+}
+
+.gameItems {
+    text-align: center;
+    columns: 3;
+    padding-left: 35vw;
+    padding-right: 35vw;
+}
+
+div.rockButton input {
+    background: url(/static/images/rock_icon.png) no-repeat;
+    background-size: 90px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    border: none;
+    text-indent: -1000em;
+}
+
+div.paperButton input {
+    background: url(/static/images/paper_icon.png) no-repeat;
+    background-size: 90px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    border: none;
+    text-indent: -1000em;
+}
+
+div.scissorsButton input {
+    background: url(/static/images/scissors_icon.png) no-repeat;
+    background-size: 90px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    border: none;
+    text-indent: -1000em;
+}
+
+div.creditButton input {
+    background: url(/static/images/credit_icon.png) no-repeat;
+    background-size: 90px;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    border: none;
+    text-indent: -1000em;
+}
+
+.statistic {
+    text-align: center;
+}
+
+.timer {
+    text-align: center;
+}
+
+.rules {
+    text-align: center;
+}
+
+.result {
+    text-align: center;
+}
+
+.command {
+    text-align: center;
+}
+
+.empty {
+    text-indent: -1000em;
+}
+
+.imageResult {
+    width: 450px;
+    height: 450px;
+}
+
+.sidenavLeft {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(86, 41, 41, 1);
+    background-image: linear-gradient(90deg, rgba(86, 41, 41, 1) 0%, rgba(241, 18, 20, 1) 100%);
+    overflow-x: hidden;
+    padding-top: 20px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    box-shadow: 17px 0px 34px 0px black;
+}
+
+.sidenavRight {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: rgba(89, 131, 252, 1);
+    background-image: linear-gradient(90deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%);
+    overflow-x: hidden;
+    padding-top: 20px;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    box-shadow: -17px 0px 34px 0px black;
+}

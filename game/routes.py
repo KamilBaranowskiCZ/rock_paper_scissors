@@ -88,10 +88,13 @@ def mainPage():
             db.session.commit()
             record = (user.wins, user.draws, user.loses)
             cumulative_record = (today_wins, today_draws, today_loses)
+            user_choice = 0
+            pc_item = 0
             return render_template(
                 "main_page.html",
                 result="You have 10 credits",
                 pc_item=pc_item,
+                user_choice = user_choice,
                 user_id=current_user_id,
                 credits=user.credits,
                 record=record,
@@ -167,6 +170,7 @@ def mainPage():
         return render_template(
             "main_page.html",
             result=result,
+            user_choice = user_choice,
             pc_item=pc_item,
             user_id=current_user_id,
             credits=user.credits,
