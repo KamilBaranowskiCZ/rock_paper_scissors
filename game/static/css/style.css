@@ -120,3 +120,15 @@ div.creditButton input {
     text-align: center;
     box-shadow: -17px 0px 34px 0px black;
 }
+
+.blinker {
+    font-size: 25px;
+    color: red;
+    animation: blinker 1s step-start infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }

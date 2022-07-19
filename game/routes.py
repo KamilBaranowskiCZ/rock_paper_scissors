@@ -92,7 +92,7 @@ def mainPage():
             pc_item = 0
             return render_template(
                 "main_page.html",
-                result="You have 10 credits",
+                result="You got 10 credits",
                 pc_item=pc_item,
                 user_choice = user_choice,
                 user_id=current_user_id,
