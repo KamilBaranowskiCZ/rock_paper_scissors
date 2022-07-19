@@ -72,8 +72,9 @@
             <img class="imageResult"  src="{{ url_for('static', filename='images/scissors_icon.png')}}">
             {% endif %}
         </div>
-        <div>
+        <div class="blinker">
             {% if not result %}
+            {% elif result == "You got 10 credits" %}
             {% else %}
             Result is: {{result}}
             {% endif %}
@@ -116,7 +117,7 @@
     <div class="timer">
         {% if credits >=3 %}
         Game timer:
-        <label id="minutes">00</label>:<label id="seconds">00</label>
+        <label id="minutes">00</label>:<label id="seconds">00</label>:<label id="miliseconds">00</label>
         {% endif %}
     </div>
 </body>
